@@ -1,7 +1,15 @@
-// /api-a/index.js
 const express = require('express');
 const axios = require('axios');
 const app = express();
+//Todo: Terminar essa API
+
+app.get('/', (req, res) => {
+    res.send(
+      {
+        test: 'test',
+      }
+    )
+})
 
 app.get('/roblox', async (req, res) => {
   try {
