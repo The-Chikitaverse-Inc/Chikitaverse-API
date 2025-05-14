@@ -6,7 +6,14 @@ const app = express();
 app.get('/', (req, res) => {
     res.send(
       {
-        test: 'test',
+        title: 'Chikitaverse API',
+        code: 200,
+        incorporated: 'The Chikitaverse Inc.',
+        games: {
+            roblox: true,
+            minecraft: false,
+            chess: true,
+        }
       }
     )
 })
@@ -20,8 +27,7 @@ app.get('/roblox', async (req, res) => {
     });
 
     res.json({
-      origem: 'API A',
-      dadosJogo: resposta.data
+      gameData: resposta.data
     });
   } catch (erro) {
     console.error('Erro ao buscar dados do Roblox:', erro.message);
@@ -29,6 +35,19 @@ app.get('/roblox', async (req, res) => {
   }
 });
 
+app.get('/discord', async (req, res) => {
+  try {
+    const resposta1 = await axios.get('https://discordapp.com/api/guilds/1311765282389360650/widget.json');
+
+    res.json({
+      serveData: resposta1.data
+    });
+  } catch (erro) {
+    console.error('Erro ao buscar dados do Discord:', erro.message);
+    res.status(500).json({ erro: 'Não foi possível puxar dados do Servidor' });
+  }
+})
+
 app.listen(1995, () => {
   console.log('API A rodando na porta 1995');
-});
+})
