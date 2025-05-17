@@ -5,7 +5,7 @@ const axios = require('axios')
 router.get('/', async (req, res) => {
   try {
     const resposta = await axios.get('https://discordapp.com/api/guilds/1311765282389360650/widget.json');
-
+    
     res.json({
       serveData: resposta.data
     });
