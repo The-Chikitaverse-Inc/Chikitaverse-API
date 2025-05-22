@@ -12,6 +12,19 @@ const limiter = rateLimit({
 
 app.use(limiter)
 
+//* Bloquea acesso de qualquer um que não tem a chave
+app.use((req, res, next) => {
+  const key = req.headers['key'];
+  if (key !== process.env.KEYACCES) {
+    return res.status(403).json({ 
+        message: 'Acesso negado',
+        code: 403,
+      });
+  }
+  next();
+});
+
+
 //! Rotas 
 const roblox = require('./routes/roblox.js');
 const discord = require('./routes/discord.js');
