@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const axios = require('axios')
+const code403 = require('../middlewares/code403')
+
+router.use(code403)
 
 router.get('/', async (req, res) => {
   try {
