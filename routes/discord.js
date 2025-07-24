@@ -11,10 +11,10 @@ router.get('/', async (req, res) => {
     
     res.json({
       serveData: resposta.data
-    });
+    })
   } catch (erro) {
     console.error('Erro ao buscar dados do Discord:', erro.message);
-    res.status(500).json({ erro: 'Não foi possível puxar dados do Servidor' });
+    res.status(500).json({ erro: 'Não foi possível puxar dados do Servidor' })
   }
 })
 
