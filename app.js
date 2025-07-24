@@ -1,6 +1,5 @@
 const express = require('express')
 const rateLimit = require('express-rate-limit')
-const code403 = require('./middlewares/code403.js')
 require('dotenv').config()
 
 const PORT = 1995
@@ -16,7 +15,6 @@ app.use(limiter)
 const roblox = require('./routes/roblox.js')
 const discord = require('./routes/discord.js')
 const chess = require('./routes/chess.js')
-const mural = require('./routes/mural.js')
 
 app.get('/', (req, res) => {
   res.send({
@@ -34,7 +32,6 @@ app.get('/', (req, res) => {
 app.use('/roblox', roblox)
 app.use('/discord', discord)
 app.use('/chess', chess)
-app.use('/mural', mural)
 
 app.listen(PORT, () => {
   console.log(`Servidor em ${PORT}`)
