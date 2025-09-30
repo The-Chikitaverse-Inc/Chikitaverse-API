@@ -36,5 +36,3 @@ app.use('/chess', chess)
 app.listen(PORT, () => {
   console.log(`Servidor em ${PORT}`)
 })
-
-module.exports = app

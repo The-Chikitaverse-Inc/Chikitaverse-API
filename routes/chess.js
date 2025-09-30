@@ -7,7 +7,7 @@ router.use(code403)
 
 router.get('/', async (req, res) => {
   try {
-    const resposta = await axios.get('https://api.chess.com/pub/club/the-chikitaverse-inc');
+    const resposta = await axios.get(`${process.env.CHESSLINK}`);
 
     res.json({
       dataChess: resposta.data

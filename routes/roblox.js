@@ -7,9 +7,9 @@ router.use(code403)
 
 router.get('/', async (req, res) => {
   try {
-    const resposta = await axios.get('https://games.roblox.com/v1/games', {
+    const resposta = await axios.get(`${process.env.ROBLOXLINK}`, {
       params: {
-        universeIds: '7768783532'
+        universeIds: process.env.ROBLOXID
       }
     });
 
