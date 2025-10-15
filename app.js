@@ -34,5 +34,5 @@ app.use('/discord', discord)
 app.use('/chess', chess)
 
 app.listen(PORT, () => {
-  console.log(`Servidor em ${PORT}`)
+  console.log(`Servidor em http://localhost:${PORT}/`)
 })

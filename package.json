@@ -4,6 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js"
   },
@@ -22,7 +24,6 @@
     "axios": "^1.12.2",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
-    "express-rate-limit": "^7.5.0",
-    "serverless-express": "^2.0.12"
+    "express-rate-limit": "^7.5.0"
   }
 }
