@@ -1,8 +1,9 @@
+console.time('BigO')
 const express = require('express')
 const rateLimit = require('express-rate-limit')
 require('dotenv').config()
 
-const PORT = 1995
+const PORT = 3000
 const app = express()
 
 const limiter = rateLimit({
@@ -20,12 +21,8 @@ app.get('/', (req, res) => {
   res.send({
     title: 'Chikitaverse API',
     incorporated: 'The Chikitaverse Inc.',
+    status: "ok",
     code: 200,
-    games: {
-      roblox: true,
-      minecraft: false,
-      chess: true,
-    }
   })
 })
 
@@ -36,3 +33,4 @@ app.use('/chess', chess)
 app.listen(PORT, () => {
   console.log(`Servidor em http://localhost:${PORT}/`)
 })
+console.timeEnd('BigO')
