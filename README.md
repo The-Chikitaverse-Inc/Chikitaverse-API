@@ -1,128 +1,114 @@
-# 🧠 Chikitaverse-API
+# Chikitaverse API
 
-API oficial do **The Chikitaverse Inc.**
-Fornece endpoints protegidos para dados do Chikitaverso relacionados a **Roblox**, **Discord** e **Xadrez**.
+Uma API REST desenvolvida em Go utilizando o framework Gin, projetada para integração com APIs externas (como Discord) e com suporte para deploy serverless.
 
----
+## 🚀 Tecnologias Utilizadas
 
-## ⚙️ Tecnologias Utilizadas
+- **Go** (1.21+)
+- **Gin Framework** - Framework web HTTP
+- **Godotenv** - Gerenciamento de variáveis de ambiente
 
-* [Express.js](https://expressjs.com)
-* [dotenv](https://www.npmjs.com/package/dotenv)
-* [express-rate-limit](https://www.npmjs.com/package/express-rate-limit)
+## 📋 Pré-requisitos
 
----
+- Go 1.21 ou superior
+- Git
 
-## 📦 Instalação
+## 🔧 Instalação
 
-1. **Clone o repositório:**
+1. Clone o repositório:
+```bash
+git clone https://github.com/The-Chikitaverse-Inc/Chikitaverse-API.git
+cd Chikitaverse-API
+```
 
-   ```bash
-   git clone https://github.com/The-Chikitaverse-Inc/Chikitaverse-API
-   cd Chikitaverse-API
-   ```
+2. Instale as dependências:
+```bash
+go mod download
+```
 
-2. **Instale as dependências:**
+3. Configure as variáveis de ambiente:
+```bash
+cp .env.example .env
+# Edite o arquivo .env com suas configurações
+```
 
-   ```bash
-   npm install
-   ```
+4. Execute a aplicação:
+```bash
+go run main.go
+```
 
-3. **Configure as variáveis de ambiente:**
-   Crie um arquivo `.env` com:
+A API estará disponível em `http://localhost:3000`
 
-   ```env
-   KEYACCES=sua_chave_de_acesso
-   ```
+## 🐳 Deploy Tradicional
 
-4. **Inicie o servidor:**
+### Build da aplicação
+```bash
+# Compilação estática (recomendado para produção)
+go build 
 
-   ```bash
-   node app.js
-   ```
+# Executar
+./Chikitaverse-API
+```
 
-   A API estará disponível em:
-   `http://localhost:1995`
+## 🔍 Exemplos de Uso
 
----
+### Requisição local
+```bash
+curl http://localhost:3000/
+# Resposta: {"test":"ok"}
 
-## 🔐 Segurança
+curl http://localhost:3000/discord
+# Resposta: Dados da API do Discord
+```
 
-* A API usa um **Rate Limiter** com limite de 60 requisições por minuto por IP.
-* Todos os endpoints são **protegidos por chave** via header:
 
-  ```
-  key: sua_chave_de_acesso_com_env
-  ```
+## 🚨 Tratamento de Erros
 
----
+A API implementa os seguintes tratamentos de erro:
 
-## 📂 Endpoints
+- **500 Internal Server Error** - Erro ao carregar variáveis de ambiente ou ao consultar API externa
+- **Panic** - Falha crítica na inicialização (ex: arquivo .env não encontrado)
 
-| Método | Rota       | Descrição                         |
-| ------ | ---------- | --------------------------------- |
-| GET    | `/`        | Status da API                     |
-| GET    | `/roblox`  | Endpoints relacionados ao Roblox  |
-| GET    | `/discord` | Funções e integrações com Discord |
-| GET    | `/chess`   | Funções relacionadas a xadrez     |
-
-*As rotas reais dentro de `/roblox`, `/discord`, `/chess` dependem da implementação dos arquivos em `./routes/`.*
-
----
-
-## 🌐 Exemplo de Resposta - `/`
-
+### Exemplo de resposta de erro:
 ```json
 {
-  "title": "Chikitaverse API",
-  "code": 200,
-  "incorporated": "The Chikitaverse Inc.",
-  "games": {
-    "roblox": true,
-    "minecraft": false,
-    "chess": true
-  }
+  "error": "Erro ao ler resposta da API"
 }
 ```
 
----
+## 🧪 Testes
 
-## 🧱 Estrutura do Projeto
-
-```
-Chikitaverse-API/
-├── routes/
-│   ├── roblox.js
-│   ├── discord.js
-│   └── chess.js
-├── .env
-├── app.js
-└── package.json
+Para executar os testes (quando implementados):
+```bash
+go test -v ./...
 ```
 
+## 📦 Dependências Principais
+
+```go
+require (
+    github.com/gin-gonic/gin v1.9.1      // Framework web
+    github.com/joho/godotenv v1.5.1      // Variáveis de ambiente
+)
+```
+
+## 🔒 Considerações de Segurança
+
+- Nunca commite o arquivo `.env` no repositório
+- Use variáveis de ambiente da plataforma em produção
+- Mantenha as dependências atualizadas (`go get -u ./...`)
+- Configure CORS adequadamente em produção
+
+## 📄 Licença
+
+Este projeto está sob a licença GNU GENERAL PUBLIC LICENSE. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+## ✨ Agradecimentos
+
+- [Gin Framework](https://gin-gonic.com/)
+
 ---
 
-## 🤝 Contribuindo
-
-Contribuições são bem-vindas! Abra uma issue ou faça um pull request com melhorias, novas rotas ou correções.
-
----
-
-## 📜 Licença
-
-Distribuído sob a [GNU 2.0](LICENSE).
-
----
-
-## 🌍 Parte do Ecossistema
-
-Confira outros projetos do **The Chikitaverse Inc.:**
-
-* [🌐 ChikitaverseWeb-site](https://github.com/The-Chikitaverse-Inc/ChikitaverseWeb-site)
-* [🤖 ChikitaBot](https://github.com/The-Chikitaverse-Inc/ChikitaBot)
-
----
-
-**Incorporation:** The Chikitaverse Inc.
+**Desenvolvido com ❤️ pela equipe Chikitaverse**
 
 **Assinado:** dvcDaniel
