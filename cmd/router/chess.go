@@ -6,12 +6,16 @@ import (
 	"net/http"
 
 	"github.com/The-Chikitaverse-Inc/Chikitaverse-API/cmd"
+	"github.com/The-Chikitaverse-Inc/Chikitaverse-API/cmd/middleware"
 	"github.com/gin-gonic/gin"
+
+
 )
 
 func Chess(rtr *gin.RouterGroup) {
 	chessGroup := rtr.Group("/chess")
-	
+	chessGroup.Use(middleware.Authrequired())
+
 	chessGroup.GET("/", func(ctx *gin.Context) {
 		chessApi := cmd.GetEnv("CHESSAPI", "")
 		resp, err := http.Get(chessApi)

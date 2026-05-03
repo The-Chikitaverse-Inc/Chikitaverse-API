@@ -6,12 +6,15 @@ import (
 	"net/http"
 
 	"github.com/The-Chikitaverse-Inc/Chikitaverse-API/cmd"
+	"github.com/The-Chikitaverse-Inc/Chikitaverse-API/cmd/middleware"
 	"github.com/gin-gonic/gin"
 )
 
 func Discord(rtr *gin.RouterGroup) {
 	discordGroup := rtr.Group("/discord")
-	
+	discordGroup.Use(middleware.Authrequired())
+
+
 	discordGroup.GET("/", func(ctx *gin.Context) {
 		discordApi := cmd.GetEnv("DISCORDAPI", "")
 		resp, err := http.Get(discordApi)

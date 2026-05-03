@@ -4,7 +4,6 @@ import (
 	"log"
 
 	"github.com/The-Chikitaverse-Inc/Chikitaverse-API/cmd/router"
-	"github.com/The-Chikitaverse-Inc/Chikitaverse-API/cmd/test"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 )
@@ -26,10 +25,8 @@ func main() {
 		})
 	})
 	
-	router.Discord(&serve.RouterGroup)
 	router.Chess(&serve.RouterGroup)
-	
-	test.Test(&serve.RouterGroup)
+	router.Discord(&serve.RouterGroup)
 
-	serve.Run(":3000")
+	serve.Run(":8000")
 }
