@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"os"
 
 	"github.com/The-Chikitaverse-Inc/Chikitaverse-API/cmd/router"
 	"github.com/gin-gonic/gin"
@@ -13,6 +14,11 @@ func main() {
 	err := godotenv.Load()
 	if err != nil {
 		log.Fatalln("Erro ao Carregar o Env")
+	}
+
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8000"
 	}
 
 	serve := gin.Default()
@@ -28,5 +34,7 @@ func main() {
 	router.Chess(&serve.RouterGroup)
 	router.Discord(&serve.RouterGroup)
 
-	serve.Run(":8000")
+	if err := serve.Run(":" + port); err != nil {
+		log.Fatal("Erro iniciar API: ", err)
+	}
 }

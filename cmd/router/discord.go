@@ -14,7 +14,6 @@ func Discord(rtr *gin.RouterGroup) {
 	discordGroup := rtr.Group("/discord")
 	discordGroup.Use(middleware.Authrequired())
 
-
 	discordGroup.GET("/", func(ctx *gin.Context) {
 		discordApi := cmd.GetEnv("DISCORDAPI", "")
 		resp, err := http.Get(discordApi)
@@ -35,7 +34,7 @@ func Discord(rtr *gin.RouterGroup) {
 		}
 
 		ctx.JSON(200, gin.H{
-			"data": json.RawMessage(body),
+			"discord_data": json.RawMessage(body),
 		})
 	})
 
